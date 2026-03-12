@@ -107,7 +107,7 @@ def export_ics(
     output = ICAL_HEADER
 
     for lesson in items:
-        if "Hidden" in lesson.bizur:
+        if lesson.is_hidden:
             continue
 
         description = json.dumps({

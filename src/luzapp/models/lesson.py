@@ -1,9 +1,13 @@
-from datetime import datetime, timedelta
-from typing import Literal
-from pydantic import BaseModel, ConfigDict
+from datetime import datetime, timedelta, date
+from typing import Any, Literal
+from pydantic import BaseModel, ConfigDict, model_validator
 
 
 EventType = Literal["Exercise", "Lecture"]
+
+_BIZUR_HIDDEN = "Hidden"
+_BIZUR_FAKE = "פיקטיבי"
+_BIZUR_CRITICAL = "קריטי"
 
 
 class Lesson(BaseModel):
@@ -30,14 +34,33 @@ class Lesson(BaseModel):
     bizur: tuple[str, ...] = ()
     groups: tuple[str, ...] = ()
     tracks: tuple[str, ...] = ()
-    classes: tuple[str, ...] = ()
+    classes: tuple[str, ...]
+
+    @model_validator(mode="before")
+    @classmethod
+    def _fold_bizur_flags(cls, data: Any) -> Any:
+        if not isinstance(data, dict):
+            return data
+        flags = {
+            "is_hidden": _BIZUR_HIDDEN,
+            "is_fake": _BIZUR_FAKE,
+            "is_critical": _BIZUR_CRITICAL,
+        }
+        extra = {k: data.pop(k, False) for k in flags}
+        if any(extra.values()):
+            bizur = set(data.get("bizur", ()))
+            for key, tag in flags.items():
+                if extra[key]:
+                    bizur.add(tag)
+            data["bizur"] = tuple(bizur)
+        return data = ()
 
     @property
     def end_time(self) -> datetime:
         return self.start_time + self.actual_length
 
     @property
-    def date(self):
+    def date(self) -> date:
         return self.start_time.date()
 
     @property
@@ -52,3 +75,15 @@ class Lesson(BaseModel):
     @property
     def end_timedelta(self) -> timedelta:
         return self.start_timedelta + self.actual_length
+
+    @property
+    def is_hidden(self) -> bool:
+        return _BIZUR_HIDDEN in self.bizur
+
+    @property
+    def is_fake(self) -> bool:
+        return _BIZUR_FAKE in self.bizur
+
+    @property
+    def is_critical(self) -> bool:
+        return _BIZUR_CRITICAL in self.bizur
