@@ -1,18 +1,20 @@
 # pyluzapp
 
-Python library for reading and writing [LuzApp](https://luzapp.co.il) schedule repositories.
+Python library for reading and writing LuzApp schedule repositories.
 
 A LuzApp schedule repository is a git-tracked directory of XML files that LuzApp uses to store and sync school timetables. This library lets you read, modify, and export those schedules from Python without running LuzApp itself.
 
 ## Installation
 
 ```bash
+# TODO: Add local repository instructions
 pip install luzapp
 ```
 
 Or with [uv](https://docs.astral.sh/uv/):
 
 ```bash
+# TODO: Add local repository instructions
 uv add luzapp
 ```
 
