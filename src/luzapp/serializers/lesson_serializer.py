@@ -1,7 +1,8 @@
+import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from pathlib import Path
-import xml.etree.ElementTree as ET
-from luzapp.models.lesson import Lesson, EventType
+
+from luzapp.models.lesson import Lesson
 
 DATE_FORMAT = "%d/%m/%Y %H:%M:%S"
 DURATION_FORMAT = "{:02d}:{:02d}:{:02d}"
