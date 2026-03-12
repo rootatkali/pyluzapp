@@ -1,5 +1,5 @@
 from datetime import time, timedelta
-from typing import Optional
+from typing import Optional, Literal
 from pydantic import BaseModel, ConfigDict
 from luzapp.models.color import NamedColor
 
@@ -50,19 +50,19 @@ class SchoolConfig(BaseModel):
     time_grid: tuple[time, ...]
     colors: tuple[NamedColor, ...]
 
-    def color_by_name(self, name: str) -> Optional[NamedColor]:
+    def color_by_name(self, name: str) -> NamedColor | None:
         for c in self.colors:
             if c.name == name:
                 return c
         return None
 
-    def color_by_argb(self, argb_int: int) -> Optional[NamedColor]:
+    def color_by_argb(self, argb_int: int) -> NamedColor | None:
         for c in self.colors:
             if c.to_argb_int() == argb_int:
                 return c
         return None
 
-    def find_group(self, name: str) -> Optional[Group]:
+    def find_group(self, name: str) -> Group | None:
         for g in self.groups:
             if g.name == name:
                 return g
