@@ -1,0 +1,361 @@
+<school-configuration name="Titan24" sync-server="gitlab.com">
+    <elements>
+        <groups>
+            <group size="11" name="ונוס"/>
+            <group size="0" name="קבוצות אם"/>
+            <group size="100" name="סגל"/>
+        </groups>
+
+        <tracks>
+			<track name="ונוס"/>
+			<track name="סגל" />
+        </tracks>
+
+        <classes>
+            <class name="ונוס" seats="1000" workstations="100" />
+            <class name="עצמאי" seats="1000" workstations="100" />
+        </classes>
+    </elements>
+
+    <defaultclass name="Teams"/>
+    <segel>
+        <group name="סגל מוביל"> 
+            <person name="שירה ארוב" sex="female" />
+        </group>
+
+        <group name="מפקדי ונוס">
+            <person name="לירון לוי" sex="female" />
+            <person name="אורין אלביליה" sex="female" />
+            <person name="עלמה בירן" sex="female" />
+            <person name="מיקה ליבוביץ'" sex="female" />
+            <person name="מעיין זילברמן" sex="female" />
+            <person name="יהונתן ויינברג" sex="male" />
+            <person name="שובל אלקלעי" sex="male" />
+        </group>
+
+        <group name="מפקדי מאגמה">
+            <person name="עידו גנלין" sex="male" />
+            <person name="אדם גאר" sex="male" />
+            <person name="שירה שמשון" sex="female" />
+            <person name="גומא אביגדור" sex="male" />
+        </group>
+
+        <group name="מפקדי טרויה">
+            <person name="אלון הולשטיין" sex="male" />
+            <person name="לירי קרת" sex="female" />
+            <person name="אמיר מנדלמילק" sex="male" />
+            <person name="טל זיני" sex="female" />
+            <person name="איתי כהן" sex="male" />
+            <person name="ליאור גולדברג" sex="male" />
+            <person name="מאור גורדון" sex="male" />
+            <person name="אורי שמחוני" sex="male" />
+            <person name="שני סולומון" sex="female" />
+        </group>
+
+        <group name="מפקדי ארטמיס">
+            <person name="אור אנג'ל" sex="female" />
+            <person name="אופק שושן" sex="male" />
+            <person name="רותם מוזס" sex="male" />
+            <person name="אור מוהבטי" sex="male" />
+            <person name="אמיתי שחר" sex="male" />
+            <person name="מאיה גבע" sex="female" />
+            <person name="נטע ויסברד" sex="female" />
+            <person name="אביאל קהרמני" sex="male" />
+            <person name="אלעד אלקבץ" sex="male" />
+            <person name="אורי זהבי" sex="male" />
+            <person name="שליו שגן" sex="male" />
+            <person name="זיו פרויד" sex="male" />
+            <person name="עתי אמבוס" sex="male" />
+        </group>
+
+        <group name="מיוחדים">
+            <person name="איש חוץ" sex="male" />
+            <person name="פיקטיבי" sex="male" />
+            <person name="קריטי" sex="male" />
+            <person name="Hidden" sex="male" />
+            <person name="ללא ביזור" sex="male" />
+        </group>
+    </segel>
+
+    <week days="6"/>
+    <day start="07:50" length="13:00" />
+    <hours>
+        <line time="00:00" />
+        <line time="00:05" />
+        <line time="00:10" />
+        <line time="00:15" />
+        <line time="00:20" />
+        <line time="00:25" />
+        <line time="00:30" />
+        <line time="00:35" />
+        <line time="00:40" />
+        <line time="00:45" />
+        <line time="00:50" />
+        <line time="00:55" />
+        <line time="01:00" />
+        <line time="01:05" />
+        <line time="01:10" />
+        <line time="01:15" />
+        <line time="01:20" />
+        <line time="01:25" />
+        <line time="01:30" />
+        <line time="01:35" />
+        <line time="01:40" />
+        <line time="01:45" />
+        <line time="01:50" />
+        <line time="01:55" />
+        <line time="02:00" />
+        <line time="02:05" />
+        <line time="02:10" />
+        <line time="02:15" />
+        <line time="02:20" />
+        <line time="02:25" />
+        <line time="02:30" />
+        <line time="02:35" />
+        <line time="02:40" />
+        <line time="02:45" />
+        <line time="02:50" />
+        <line time="02:55" />
+        <line time="03:00" />
+        <line time="03:05" />
+        <line time="03:10" />
+        <line time="03:15" />
+        <line time="03:20" />
+        <line time="03:25" />
+        <line time="03:30" />
+        <line time="03:35" />
+        <line time="03:40" />
+        <line time="03:45" />
+        <line time="03:50" />
+        <line time="03:55" />
+        <line time="04:00" />
+        <line time="04:05" />
+        <line time="04:10" />
+        <line time="04:15" />
+        <line time="04:20" />
+        <line time="04:25" />
+        <line time="04:30" />
+        <line time="04:35" />
+        <line time="04:40" />
+        <line time="04:45" />
+        <line time="04:50" />
+        <line time="04:55" />
+        <line time="05:00" />
+        <line time="05:05" />
+        <line time="05:10" />
+        <line time="05:15" />
+        <line time="05:20" />
+        <line time="05:25" />
+        <line time="05:30" />
+        <line time="05:35" />
+        <line time="05:40" />
+        <line time="05:45" />
+        <line time="05:50" />
+        <line time="05:55" />
+        <line time="06:00" />
+        <line time="06:05" />
+        <line time="06:10" />
+        <line time="06:15" />
+        <line time="06:20" />
+        <line time="06:25" />
+        <line time="06:30" />
+        <line time="06:35" />
+        <line time="06:40" />
+        <line time="06:45" />
+        <line time="06:50" />
+        <line time="06:55" />
+        <line time="07:00" />
+        <line time="07:05" />
+        <line time="07:10" />
+        <line time="07:15" />
+        <line time="07:20" />
+        <line time="07:25" />
+        <line time="07:30" />
+        <line time="07:35" />
+        <line time="07:40" />
+        <line time="07:45" />
+        <line time="07:50" />
+        <line time="07:55" />
+        <line time="08:00" />
+        <line time="08:05" />
+        <line time="08:10" />
+        <line time="08:15" />
+        <line time="08:20" />
+        <line time="08:25" />
+        <line time="08:30" />
+        <line time="08:35" />
+        <line time="08:40" />
+        <line time="08:45" />
+        <line time="08:50" />
+        <line time="08:55" />
+        <line time="09:00" />
+        <line time="09:05" />
+        <line time="09:10" />
+        <line time="09:15" />
+        <line time="09:20" />
+        <line time="09:25" />
+        <line time="09:30" />
+        <line time="09:35" />
+        <line time="09:40" />
+        <line time="09:45" />
+        <line time="09:50" />
+        <line time="09:55" />
+        <line time="10:00" />
+        <line time="10:05" />
+        <line time="10:10" />
+        <line time="10:15" />
+        <line time="10:20" />
+        <line time="10:25" />
+        <line time="10:30" />
+        <line time="10:35" />
+        <line time="10:40" />
+        <line time="10:45" />
+        <line time="10:50" />
+        <line time="10:55" />
+        <line time="11:00" />
+        <line time="11:05" />
+        <line time="11:10" />
+        <line time="11:15" />
+        <line time="11:20" />
+        <line time="11:25" />
+        <line time="11:30" />
+        <line time="11:35" />
+        <line time="11:40" />
+        <line time="11:45" />
+        <line time="11:50" />
+        <line time="11:55" />
+        <line time="12:00" />
+        <line time="12:05" />
+        <line time="12:10" />
+        <line time="12:15" />
+        <line time="12:20" />
+        <line time="12:25" />
+        <line time="12:30" />
+        <line time="12:35" />
+        <line time="12:40" />
+        <line time="12:45" />
+        <line time="12:50" />
+        <line time="12:55" />
+        <line time="13:00" />
+        <line time="13:05" />
+        <line time="13:10" />
+        <line time="13:15" />
+        <line time="13:20" />
+        <line time="13:25" />
+        <line time="13:30" />
+        <line time="13:35" />
+        <line time="13:40" />
+        <line time="13:45" />
+        <line time="13:50" />
+        <line time="13:55" />
+        <line time="14:00" />
+        <line time="14:05" />
+        <line time="14:10" />
+        <line time="14:15" />
+        <line time="14:20" />
+        <line time="14:25" />
+        <line time="14:30" />
+        <line time="14:35" />
+        <line time="14:40" />
+        <line time="14:45" />
+        <line time="14:50" />
+        <line time="14:55" />
+        <line time="15:00" />
+        <line time="15:05" />
+        <line time="15:10" />
+        <line time="15:15" />
+        <line time="15:20" />
+        <line time="15:25" />
+        <line time="15:30" />
+        <line time="15:35" />
+        <line time="15:40" />
+        <line time="15:45" />
+        <line time="15:50" />
+        <line time="15:55" />
+        <line time="16:00" />
+        <line time="16:05" />
+        <line time="16:10" />
+        <line time="16:15" />
+        <line time="16:20" />
+        <line time="16:25" />
+        <line time="16:30" />
+        <line time="16:35" />
+        <line time="16:40" />
+        <line time="16:45" />
+        <line time="16:50" />
+        <line time="16:55" />
+        <line time="17:00" />
+        <line time="17:05" />
+        <line time="17:10" />
+        <line time="17:15" />
+        <line time="17:20" />
+        <line time="17:25" />
+        <line time="17:30" />
+        <line time="17:35" />
+        <line time="17:40" />
+        <line time="17:45" />
+        <line time="17:50" />
+        <line time="17:55" />
+        <line time="18:00" />
+        <line time="18:05" />
+        <line time="18:10" />
+        <line time="18:15" />
+        <line time="18:20" />
+        <line time="18:25" />
+        <line time="18:30" />
+        <line time="18:35" />
+        <line time="18:40" />
+        <line time="18:45" />
+        <line time="18:50" />
+        <line time="18:55" />
+        <line time="19:00" />
+        <line time="19:05" />
+        <line time="19:10" />
+        <line time="19:15" />
+        <line time="19:20" />
+        <line time="19:25" />
+        <line time="19:30" />
+        <line time="19:35" />
+        <line time="19:40" />
+        <line time="19:45" />
+        <line time="19:50" />
+        <line time="19:55" />
+        <line time="20:00" />
+    </hours>
+
+	<colors>
+		<color name="אדום" R="255" G="0" B="0" />
+		<color name="ירוק" R="0" G="255" B="0" />
+		<color name="כחול" R="0" G="0" B="255" />
+		<color name="צהוב" R="255" G="255" B="0" />
+		<color name="סגול" R="128" G="0" B="128" />
+		<color name="כתום" R="255" G="165" B="0" />
+		<color name="ורוד" R="255" G="192" B="203" />
+		<color name="חום" R="165" G="42" B="42" />
+		<color name="אפור" R="128" G="128" B="128" />
+		<color name="שחור" R="0" G="0" B="0" />
+		<color name="לבן" R="255" G="255" B="255" />
+		<color name="ציאן" R="0" G="255" B="255" />
+		<color name="אגןטה" R="255" G="0" B="255" />
+		<color name="בחרדל" R="0" G="255" B="0" />
+		<color name="תכלת" R="0" G="128" B="128" />
+		<color name="כחול כהה" R="0" G="0" B="128" />
+		<color name="טומן" R="128" G="0" B="0" />
+		<color name="זית" R="128" G="128" B="0" />
+		<color name="כסף" R="192" G="192" B="192" />
+		<color name="זהב" R="255" G="215" B="0" />
+		<color name="טורקיז" R="64" G="224" B="208" />
+		<color name="סגול בהיר" R="238" G="130" B="238" />
+		<color name="אינדיגו" R="75" G="0" B="130" />
+		<color name="ביג" R="245" G="245" B="220" />
+		<color name="לבנדר" R="250" G="128" B="114" />
+		<color name="כרים" R="220" G="20" B="60" />
+		<color name="טורקיז כהה" R="112" G="128" B="144" />
+		<color name="כחול שמים" R="135" G="206" B="235" />
+		<color name="ירוק כהה" R="107" G="142" B="35" />
+		<color name="טומטו" R="255" G="99" B="71" />
+		<color name="כחול פליז" R="70" G="130" B="180" />
+	</colors>
+    
+
+</school-configuration>

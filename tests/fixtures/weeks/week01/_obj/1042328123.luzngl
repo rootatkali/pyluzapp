@@ -1,0 +1,35 @@
+<WeekConfig>
+  <LessonInfo lessonId="1042328123">
+    <masterId>
+    </masterId>
+    <lessonArray>הפסקה</lessonArray>
+    <lessonSubject>הפסקה</lessonSubject>
+    <lessonStartTime>16/03/2026 19:00:00</lessonStartTime>
+    <lessonWantedLength>01:15:00</lessonWantedLength>
+    <lessonActualLength>01:15:00</lessonActualLength>
+    <lessonDisplay>הפסקת ערב</lessonDisplay>
+    <lessonIsBreak>True</lessonIsBreak>
+    <lessonIsSkippableForRelevantGroups>False</lessonIsSkippableForRelevantGroups>
+    <lessonIsLocked>False</lessonIsLocked>
+    <lessonIsConversationPotential>False</lessonIsConversationPotential>
+    <backgroundColor>-1</backgroundColor>
+    <eventType>Exercise</eventType>
+    <surpressRoomValidation>False</surpressRoomValidation>
+    <staffComment>
+    </staffComment>
+    <taskType>
+    </taskType>
+    <taskParameters>
+    </taskParameters>
+    <Bizur />
+    <Groups>
+      <Item>ונוס</Item>
+    </Groups>
+    <Tracks>
+      <Item>ונוס</Item>
+    </Tracks>
+    <Classes>
+      <Item>ונוס</Item>
+    </Classes>
+  </LessonInfo>
+</WeekConfig>

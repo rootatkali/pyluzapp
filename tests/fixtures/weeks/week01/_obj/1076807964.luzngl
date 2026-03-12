@@ -1,0 +1,34 @@
+<WeekConfig>
+  <LessonInfo lessonId="1076807964">
+    <masterId>
+    </masterId>
+    <lessonArray>נחש</lessonArray>
+    <lessonSubject>Conventions</lessonSubject>
+    <lessonStartTime>17/03/2026 13:00:00</lessonStartTime>
+    <lessonWantedLength>00:15:00</lessonWantedLength>
+    <lessonActualLength>00:15:00</lessonActualLength>
+    <lessonDisplay>נחש</lessonDisplay>
+    <lessonIsBreak>False</lessonIsBreak>
+    <lessonIsSkippableForRelevantGroups>False</lessonIsSkippableForRelevantGroups>
+    <lessonIsLocked>False</lessonIsLocked>
+    <lessonIsConversationPotential>False</lessonIsConversationPotential>
+    <backgroundColor>-9728477</backgroundColor>
+    <eventType>Exercise</eventType>
+    <surpressRoomValidation>False</surpressRoomValidation>
+    <staffComment>ל"ע קונבנציות</staffComment>
+    <taskType>
+    </taskType>
+    <taskParameters>
+    </taskParameters>
+    <Bizur />
+    <Groups>
+      <Item>ונוס</Item>
+    </Groups>
+    <Tracks>
+      <Item>ונוס</Item>
+    </Tracks>
+    <Classes>
+      <Item>ונוס</Item>
+    </Classes>
+  </LessonInfo>
+</WeekConfig>

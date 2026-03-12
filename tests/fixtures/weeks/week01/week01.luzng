@@ -1,0 +1,11 @@
+<WeekConfig number="1" daysInWeek="6" startTime="15/03/2026 00:00:00">
+  <Groups>
+    <Item>ונוס</Item>
+  </Groups>
+  <Tracks>
+    <Item>ונוס</Item>
+  </Tracks>
+  <Classes>
+    <Item>ונוס</Item>
+  </Classes>
+</WeekConfig>
