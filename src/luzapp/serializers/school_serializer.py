@@ -6,6 +6,12 @@ from luzapp.models.color import NamedColor
 
 
 def parse_school(source: str | Path) -> SchoolConfig:
+    """Parse a :class:`~luzapp.models.school.SchoolConfig` from a ``config.school`` file or XML string.
+
+    Args:
+        source: Either a :class:`~pathlib.Path` to a ``config.school`` file or
+            a raw XML string.
+    """
     if isinstance(source, Path):
         root = ET.parse(source).getroot()
     else:

@@ -2,6 +2,26 @@ from luzapp.models.lesson import Lesson
 
 
 def split_lessons_and_breaks(items: list[Lesson]) -> list[Lesson]:
+    """Split lessons that overlap a break slot into two separate events.
+
+    Given a mixed list of lessons and breaks, this function ensures that no
+    lesson spans across a break.  When a break falls in the middle of a lesson
+    the lesson is replaced by two shorter copies: one ending at the break start
+    and one starting at the break end.  Breaks are always preserved in the
+    returned list.
+
+    Breaks are processed in chronological order.  All times are assumed to be
+    within the same calendar day; cross-midnight lessons are not supported.
+
+    Args:
+        items: A flat list of :class:`~luzapp.models.lesson.Lesson` objects,
+            which may include both regular lessons and break slots
+            (``is_break=True``).
+
+    Returns:
+        A new list containing the (possibly split) lessons followed by all
+        break slots.  Order within the lesson portion is not guaranteed.
+    """
     lessons = [i for i in items if not i.is_break]
     breaks = [i for i in items if i.is_break]
 

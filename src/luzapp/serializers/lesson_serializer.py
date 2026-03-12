@@ -32,6 +32,17 @@ def _items_xml(tag: str, items: tuple[str, ...], indent: str = "      ") -> str:
 
 
 def serialize_lesson(lesson: Lesson) -> str:
+    """Serialize a :class:`~luzapp.models.lesson.Lesson` to LuzApp XML format.
+
+    The output is a ``<WeekConfig>`` XML string compatible with the ``.luzngl``
+    file format consumed by the LuzApp .NET application.
+
+    Args:
+        lesson: The lesson to serialize.
+
+    Returns:
+        A UTF-8 XML string representing the lesson.
+    """
     def whitespace_element(tag: str, value: str) -> str:
         # Preserve whitespace-only text for empty fields (matches LuzApp format)
         if not value.strip():
@@ -73,6 +84,18 @@ def serialize_lesson(lesson: Lesson) -> str:
 
 
 def parse_lesson(source: str | Path) -> Lesson:
+    """Parse a :class:`~luzapp.models.lesson.Lesson` from a ``.luzngl`` file or XML string.
+
+    Args:
+        source: Either a :class:`~pathlib.Path` to a ``.luzngl`` file or a raw
+            XML string.
+
+    Returns:
+        A fully populated :class:`~luzapp.models.lesson.Lesson`.
+
+    Raises:
+        ValueError: If the XML does not contain a ``<LessonInfo>`` element.
+    """
     if isinstance(source, Path):
         tree = ET.parse(source)
         root = tree.getroot()

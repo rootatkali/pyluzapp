@@ -7,6 +7,12 @@ WEEK_DATE_FORMAT = "%d/%m/%Y %H:%M:%S"
 
 
 def parse_week(source: str | Path) -> WeekConfig:
+    """Parse a :class:`~luzapp.models.week.WeekConfig` from a ``.luzng`` file or XML string.
+
+    Args:
+        source: Either a :class:`~pathlib.Path` to a ``.luzng`` file or a raw
+            XML string.
+    """
     if isinstance(source, Path):
         root = ET.parse(source).getroot()
     else:
@@ -29,6 +35,11 @@ def parse_week(source: str | Path) -> WeekConfig:
 
 
 def serialize_week(week: WeekConfig) -> str:
+    """Serialize a :class:`~luzapp.models.week.WeekConfig` to LuzApp XML format.
+
+    Returns:
+        A UTF-8 XML string suitable for writing to a ``.luzng`` file.
+    """
     start_str = week.start_time.strftime(WEEK_DATE_FORMAT)
 
     def items_xml(tag: str, items: tuple[str, ...]) -> str:
