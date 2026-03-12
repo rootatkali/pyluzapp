@@ -1,10 +1,10 @@
 [project]
 name = "luzapp"
 version = "0.1.0"
-description = "Add your description here"
+description = "Luzapp management library"
 readme = "README.md"
 authors = [
-    { name = "Rotem Moses", email = "rotem@codeguru.co.il" }
+    { name = "Rotem Moses", email = "rootatkali4@gmail.com" }
 ]
 requires-python = ">=3.13"
 dependencies = [
