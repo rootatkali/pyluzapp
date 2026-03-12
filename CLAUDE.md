@@ -28,7 +28,7 @@ uv run ruff check src/
 
 ## Architecture
 
-This is a **generic Python library** (`luzapp`) for managing school schedules stored in a file-based git repository. It is designed to be used by school-specific projects (sibling directories in `C:\Users\Rotem\Git\`) that import the library and provide their own translations.
+This is a **generic Python library** (`luzapp`) for managing school schedules stored in a file-based git repository. It is designed to be used by school-specific projects that import the library and provide their own translations.
 
 ### Package structure
 
