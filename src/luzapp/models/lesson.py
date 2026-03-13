@@ -107,6 +107,11 @@ class Lesson(BaseModel):
         return self.event_type == "Lecture"
 
     @property
+    def is_exercise(self) -> bool:
+        """``True`` when ``event_type`` is ``"Exercise"``"""
+        return self.event_type == "Exercise"
+
+    @property
     def start_timedelta(self) -> timedelta:
         """Time-of-day of ``start_time`` expressed as a :class:`timedelta` from midnight."""
         t = self.start_time.time()
