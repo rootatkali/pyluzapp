@@ -130,3 +130,35 @@ def test_export_ics(venus_repo):
     result = venus_repo.export_ics([1])
     assert "BEGIN:VCALENDAR" in result
     assert "END:VCALENDAR" in result
+
+
+def test_save_school_config_persists(tmp_path):
+    import shutil
+    from luzapp.models.school import Group
+    shutil.copy(FIXTURES_DIR / "config.school", tmp_path / "config.school")
+    repo = ScheduleRepo(tmp_path)
+
+    original_name_count = len(repo.school_config.groups)
+    new_config = repo.school_config.with_group(Group(name="BrandNewGroup", size=42))
+    repo.save_school_config(new_config)
+
+    persisted = repo.school_config
+    assert len(persisted.groups) == original_name_count + 1
+    assert any(g.name == "BrandNewGroup" for g in persisted.groups)
+
+
+def test_save_school_config_invalidates_cache(tmp_path):
+    import shutil
+    from luzapp.models.school import Group
+    shutil.copy(FIXTURES_DIR / "config.school", tmp_path / "config.school")
+    repo = ScheduleRepo(tmp_path)
+
+    # Populate cache
+    first = repo.school_config
+    new_config = first.with_group(Group(name="CacheTest", size=5))
+    repo.save_school_config(new_config)
+
+    # Cache should be invalidated; next access reads new value
+    second = repo.school_config
+    assert first is not second
+    assert any(g.name == "CacheTest" for g in second.groups)

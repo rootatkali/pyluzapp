@@ -7,6 +7,7 @@ from luzapp.models.week import WeekConfig
 from luzapp.serializers.school_serializer import parse_school
 from luzapp.operations.lesson_ops import load_all_lessons, save_lesson, delete_lesson
 from luzapp.operations.week_ops import list_weeks, create_week, load_week, get_week_dir
+from luzapp.operations.school_ops import save_school
 from luzapp.operations.id_gen import generate_lesson_id
 from luzapp.translations.base import Translator
 from luzapp.export.ics import export_ics
@@ -115,6 +116,18 @@ class ScheduleRepo:
     def generate_lesson_id(self) -> int:
         """Generate a random lesson ID suitable for use in a new lesson."""
         return generate_lesson_id()
+
+    def save_school_config(self, config: SchoolConfig) -> None:
+        """Persist a new :class:`~luzapp.models.school.SchoolConfig` to disk.
+
+        The config file is overwritten and the cached ``school_config`` property
+        is invalidated so the next access re-reads the new file.
+
+        Args:
+            config: The school configuration to persist.
+        """
+        save_school(self._config_file, config)
+        self.__dict__.pop("school_config", None)
 
     def export_ics(
         self,

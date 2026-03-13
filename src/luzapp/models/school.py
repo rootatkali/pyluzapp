@@ -132,3 +132,48 @@ class SchoolConfig(BaseModel):
         for sg in self.staff_groups:
             result.extend(sg.members)
         return result
+
+    def with_group(self, group: "Group") -> "SchoolConfig":
+        """Return a new config with *group* added (replacing any existing group with the same name)."""
+        updated = tuple(g for g in self.groups if g.name != group.name) + (group,)
+        return self.model_copy(update={"groups": updated})
+
+    def without_group(self, name: str) -> "SchoolConfig":
+        """Return a new config with the group named *name* removed."""
+        return self.model_copy(update={"groups": tuple(g for g in self.groups if g.name != name)})
+
+    def with_track(self, track: "Track") -> "SchoolConfig":
+        """Return a new config with *track* added (replacing any existing track with the same name)."""
+        updated = tuple(t for t in self.tracks if t.name != track.name) + (track,)
+        return self.model_copy(update={"tracks": updated})
+
+    def without_track(self, name: str) -> "SchoolConfig":
+        """Return a new config with the track named *name* removed."""
+        return self.model_copy(update={"tracks": tuple(t for t in self.tracks if t.name != name)})
+
+    def with_class(self, classroom: "ClassRoom") -> "SchoolConfig":
+        """Return a new config with *classroom* added (replacing any existing class with the same name)."""
+        updated = tuple(c for c in self.classes if c.name != classroom.name) + (classroom,)
+        return self.model_copy(update={"classes": updated})
+
+    def without_class(self, name: str) -> "SchoolConfig":
+        """Return a new config with the classroom named *name* removed."""
+        return self.model_copy(update={"classes": tuple(c for c in self.classes if c.name != name)})
+
+    def with_color(self, color: "NamedColor") -> "SchoolConfig":
+        """Return a new config with *color* added (replacing any existing color with the same name)."""
+        updated = tuple(c for c in self.colors if c.name != color.name) + (color,)
+        return self.model_copy(update={"colors": updated})
+
+    def without_color(self, name: str) -> "SchoolConfig":
+        """Return a new config with the color named *name* removed."""
+        return self.model_copy(update={"colors": tuple(c for c in self.colors if c.name != name)})
+
+    def with_staff_group(self, sg: "StaffGroup") -> "SchoolConfig":
+        """Return a new config with *sg* added (replacing any existing staff group with the same name)."""
+        updated = tuple(s for s in self.staff_groups if s.name != sg.name) + (sg,)
+        return self.model_copy(update={"staff_groups": updated})
+
+    def without_staff_group(self, name: str) -> "SchoolConfig":
+        """Return a new config with the staff group named *name* removed."""
+        return self.model_copy(update={"staff_groups": tuple(s for s in self.staff_groups if s.name != name)})

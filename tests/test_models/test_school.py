@@ -100,3 +100,121 @@ def test_group_frozen():
     g = Group(name="G", size=5)
     with pytest.raises(Exception):
         g.name = "mutated"  # type: ignore
+
+
+# --- with_*/without_* mutation helpers ---
+
+def test_with_group_adds():
+    school = make_school()
+    new_group = Group(name="GroupB", size=20)
+    updated = school.with_group(new_group)
+    assert school is not updated
+    assert len(updated.groups) == 2
+    assert updated.find_group("GroupB") is not None
+
+
+def test_with_group_replaces_same_name():
+    school = make_school()
+    replacement = Group(name="GroupA", size=99)
+    updated = school.with_group(replacement)
+    assert len(updated.groups) == 1
+    assert updated.find_group("GroupA").size == 99
+
+
+def test_without_group_removes():
+    school = make_school()
+    updated = school.without_group("GroupA")
+    assert len(updated.groups) == 0
+
+
+def test_without_group_noop_on_missing():
+    school = make_school()
+    updated = school.without_group("NonExistent")
+    assert len(updated.groups) == 1
+
+
+def test_with_track_adds():
+    school = make_school()
+    updated = school.with_track(Track(name="TrackB"))
+    assert len(updated.tracks) == 2
+
+
+def test_with_track_replaces():
+    school = make_school()
+    updated = school.with_track(Track(name="TrackA"))
+    assert len(updated.tracks) == 1
+
+
+def test_without_track_removes():
+    school = make_school()
+    updated = school.without_track("TrackA")
+    assert len(updated.tracks) == 0
+
+
+def test_with_class_adds():
+    school = make_school()
+    updated = school.with_class(ClassRoom(name="RoomB", seats=20, workstations=5))
+    assert len(updated.classes) == 2
+
+
+def test_with_class_replaces():
+    school = make_school()
+    updated = school.with_class(ClassRoom(name="RoomA", seats=50, workstations=20))
+    assert len(updated.classes) == 1
+    assert updated.classes[0].seats == 50
+
+
+def test_without_class_removes():
+    school = make_school()
+    updated = school.without_class("RoomA")
+    assert len(updated.classes) == 0
+
+
+def test_with_color_adds():
+    school = make_school()
+    updated = school.with_color(NamedColor(name="blue", r=0, g=0, b=255))
+    assert len(updated.colors) == 3
+
+
+def test_with_color_replaces():
+    school = make_school()
+    updated = school.with_color(NamedColor(name="red", r=200, g=0, b=0))
+    assert len(updated.colors) == 2
+    assert updated.color_by_name("red").r == 200
+
+
+def test_without_color_removes():
+    school = make_school()
+    updated = school.without_color("red")
+    assert len(updated.colors) == 1
+    assert updated.color_by_name("red") is None
+
+
+def test_with_staff_group_adds():
+    school = make_school()
+    sg = StaffGroup(name="NewTeam", members=(Person(name="Alice", sex="female"),))
+    updated = school.with_staff_group(sg)
+    assert len(updated.staff_groups) == 1
+
+
+def test_with_staff_group_replaces():
+    existing_sg = StaffGroup(name="Team", members=(Person(name="Alice", sex="female"),))
+    school = make_school(staff_groups=(existing_sg,))
+    replacement = StaffGroup(name="Team", members=(Person(name="Bob", sex="male"),))
+    updated = school.with_staff_group(replacement)
+    assert len(updated.staff_groups) == 1
+    assert updated.staff_groups[0].members[0].name == "Bob"
+
+
+def test_without_staff_group_removes():
+    sg = StaffGroup(name="Team", members=())
+    school = make_school(staff_groups=(sg,))
+    updated = school.without_staff_group("Team")
+    assert len(updated.staff_groups) == 0
+
+
+def test_mutation_helpers_return_new_instances():
+    school = make_school()
+    updated = school.with_group(Group(name="GroupB", size=5))
+    assert updated is not school
+    assert len(school.groups) == 1  # original unchanged

@@ -5,6 +5,80 @@ from luzapp.models.school import SchoolConfig, Group, Track, ClassRoom, StaffGro
 from luzapp.models.color import NamedColor
 
 
+def serialize_school(config: SchoolConfig) -> str:
+    """Serialize a :class:`~luzapp.models.school.SchoolConfig` to XML.
+
+    The output is compatible with the ``config.school`` file format consumed
+    by the LuzApp .NET application.
+
+    Args:
+        config: The school configuration to serialize.
+
+    Returns:
+        A UTF-8 XML string representing the school configuration.
+    """
+    root = ET.Element("school", name=config.name)
+    root.set("sync-server", config.sync_server)
+
+    elements = ET.SubElement(root, "elements")
+
+    groups_el = ET.SubElement(elements, "groups")
+    for g in config.groups:
+        ET.SubElement(groups_el, "group", name=g.name, size=str(g.size))
+
+    tracks_el = ET.SubElement(elements, "tracks")
+    for t in config.tracks:
+        ET.SubElement(tracks_el, "track", name=t.name)
+
+    classes_el = ET.SubElement(elements, "classes")
+    for c in config.classes:
+        ET.SubElement(
+            classes_el,
+            "class",
+            name=c.name,
+            seats=str(c.seats),
+            workstations=str(c.workstations),
+        )
+
+    ET.SubElement(root, "defaultclass", name=config.default_class)
+
+    segel_el = ET.SubElement(root, "segel")
+    for sg in config.staff_groups:
+        sg_el = ET.SubElement(segel_el, "group", name=sg.name)
+        for p in sg.members:
+            ET.SubElement(sg_el, "person", name=p.name, sex=p.sex)
+
+    ET.SubElement(root, "week", days=str(config.week_days))
+
+    total_seconds = int(config.day_length.total_seconds())
+    length_hours, remainder = divmod(total_seconds, 3600)
+    length_minutes = remainder // 60
+    ET.SubElement(
+        root,
+        "day",
+        start=config.day_start.strftime("%H:%M"),
+        length=f"{length_hours:02d}:{length_minutes:02d}",
+    )
+
+    hours_el = ET.SubElement(root, "hours")
+    for t in config.time_grid:
+        ET.SubElement(hours_el, "line", time=t.strftime("%H:%M"))
+
+    colors_el = ET.SubElement(root, "colors")
+    for c in config.colors:
+        ET.SubElement(
+            colors_el,
+            "color",
+            name=c.name,
+            R=str(c.r),
+            G=str(c.g),
+            B=str(c.b),
+        )
+
+    ET.indent(root)
+    return ET.tostring(root, encoding="unicode", xml_declaration=False)
+
+
 def parse_school(source: str | Path) -> SchoolConfig:
     """Parse a :class:`~luzapp.models.school.SchoolConfig` from a ``config.school`` file or XML string.
 

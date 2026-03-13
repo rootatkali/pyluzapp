@@ -1,6 +1,6 @@
 from pathlib import Path
 import pytest
-from luzapp.serializers.school_serializer import parse_school
+from luzapp.serializers.school_serializer import parse_school, serialize_school
 
 
 FIXTURES_DIR = Path(__file__).parent.parent / "fixtures"
@@ -102,3 +102,47 @@ def test_all_staff():
 def test_parse_time_grid():
     school = parse_school(SCHOOL_FILE)
     assert len(school.time_grid) > 0
+
+
+def test_serialize_round_trip():
+    original = parse_school(SCHOOL_FILE)
+    xml_str = serialize_school(original)
+    restored = parse_school(xml_str)
+
+    assert restored.name == original.name
+    assert restored.sync_server == original.sync_server
+    assert restored.week_days == original.week_days
+    assert restored.day_start == original.day_start
+    assert restored.day_length == original.day_length
+    assert restored.default_class == original.default_class
+    assert len(restored.groups) == len(original.groups)
+    assert len(restored.tracks) == len(original.tracks)
+    assert len(restored.classes) == len(original.classes)
+    assert len(restored.colors) == len(original.colors)
+    assert len(restored.staff_groups) == len(original.staff_groups)
+    assert len(restored.time_grid) == len(original.time_grid)
+
+    for og, rg in zip(original.groups, restored.groups):
+        assert og.name == rg.name
+        assert og.size == rg.size
+
+    for ot, rt in zip(original.tracks, restored.tracks):
+        assert ot.name == rt.name
+
+    for oc, rc in zip(original.classes, restored.classes):
+        assert oc.name == rc.name
+        assert oc.seats == rc.seats
+        assert oc.workstations == rc.workstations
+
+    for oc, rc in zip(original.colors, restored.colors):
+        assert oc.name == rc.name
+        assert oc.r == rc.r
+        assert oc.g == rc.g
+        assert oc.b == rc.b
+
+    for osg, rsg in zip(original.staff_groups, restored.staff_groups):
+        assert osg.name == rsg.name
+        assert len(osg.members) == len(rsg.members)
+        for op, rp in zip(osg.members, rsg.members):
+            assert op.name == rp.name
+            assert op.sex == rp.sex
