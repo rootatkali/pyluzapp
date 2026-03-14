@@ -129,3 +129,7 @@ uv sync
 uv run pytest
 uv run pytest --cov=src/luzapp   # with coverage
 ```
+
+## Legal Notice
+This library is open-source under the [Apache License](LICENSE), with the copyright holder being the State of Israel.
+However, LuzApp itself is proprietary software, of which usage and modification is restricted to authorized personnel only.
