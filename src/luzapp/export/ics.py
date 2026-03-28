@@ -63,13 +63,16 @@ def _tz_datetime(dt: datetime) -> str:
     return 'TZID="Israel Standard Time":' + dt.strftime(TZ_DATE_FORMAT)
 
 
-def _get_summary(lesson: Lesson, translator: Translator) -> str:
+def _get_summary(lesson: Lesson, translator: Translator, special_event_names: list[str] = None) -> str:
+    if not special_event_names:
+        special_event_names = []
+
     array = translator.translate_subject(lesson.array)
 
-    if array == "הפסקה" or lesson.display in ["פתיחת יום", "סיכום יום"]:
+    if array == "הפסקה" or lesson.is_break or lesson.display in special_event_names:
         return lesson.display
 
-    if array == "שונות":
+    if array in ("שונות", "מסגרת"):
         return f"הרצאה - {lesson.display}"
 
     if lesson.is_lecture:
@@ -96,6 +99,7 @@ def _get_attendees(lesson: Lesson, translator: Translator) -> str:
 def export_ics(
     lessons: list[Lesson],
     translator: Translator | None = None,
+    special_event_names: list[str] = None,
     split_breaks: bool = True,
 ) -> str:
     if translator is None:
@@ -128,7 +132,7 @@ def export_ics(
             dtend=_tz_datetime(lesson.end_time),
             dtstart=_tz_datetime(lesson.start_time),
             location=", ".join(lesson.classes),
-            summary=_get_summary(lesson, translator),
+            summary=_get_summary(lesson, translator, special_event_names),
             attendees=_get_attendees(lesson, translator),
             uid=uuid4(),
         )
