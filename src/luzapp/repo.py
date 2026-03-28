@@ -132,8 +132,9 @@ class ScheduleRepo:
     def export_ics(
         self,
         week_numbers: list[int],
-        translator: Translator | None = None,
+        translator: Translator = None,
         split_breaks: bool = True,
+        special_event_names: list[str] = None,
     ) -> str:
         """Export lessons from one or more weeks as an iCalendar string.
 
@@ -144,6 +145,8 @@ class ScheduleRepo:
                 :class:`~luzapp.translations.dict_translator.NullTranslator`.
             split_breaks: When ``True`` (default), lessons that overlap a
                 break slot are split into two events around the break.
+            special_event_names: Optional list of event names that are exported
+                as-is, without prefixes.
 
         Returns:
             A string in iCalendar (``text/calendar``) format.
@@ -151,4 +154,4 @@ class ScheduleRepo:
         lessons = []
         for wn in week_numbers:
             lessons.extend(self.get_lessons(wn))
-        return export_ics(lessons, translator=translator, split_breaks=split_breaks)
+        return export_ics(lessons, translator=translator, split_breaks=split_breaks, special_event_names=special_event_names)
