@@ -28,17 +28,17 @@ def split_lessons_and_breaks(items: list[Lesson]) -> list[Lesson]:
     result_lessons = list(lessons)
 
     for luz_break in sorted(breaks, key=lambda x: x.start_time):
-        break_start = luz_break.start_time
-        break_end = luz_break.end_time
+        break_start = luz_break.start_timedelta
+        break_end = luz_break.end_timedelta
 
         new_lessons: list[Lesson] = []
         updated_lessons: list[Lesson] = []
 
         for lesson in result_lessons:
-            lesson_start = lesson.start_time
-            lesson_end = lesson.end_time
+            lesson_start = lesson.start_timedelta
+            lesson_end = lesson.end_timedelta
 
-            if lesson_start < break_start < lesson_end:
+            if lesson.start_time < luz_break.start_time < lesson.end_time:
                 # Split: shorten original, create second part after break
                 shortened = lesson.model_copy(update={
                     "actual_length": break_start - lesson_start,
